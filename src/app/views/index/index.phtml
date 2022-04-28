@@ -1,0 +1,64 @@
+<?php
+
+
+// phpinfo(); die;
+
+echo "<h1>Events Task</h1>";
+
+echo PHP_EOL;       // php End Of Line...
+
+echo $this->tag->linkTo(
+    [
+        'product',
+        'Add Product',
+        'class' => 'btn btn-primary'
+    ]
+    
+);
+
+echo '<br><br>';
+
+echo $this->tag->linkTo(
+    [
+        'product/displayProducts',
+        'Display Products',
+        'class' => 'btn btn-info'
+    ]
+    
+);
+
+echo '<br><br>';
+
+echo $this->tag->linkTo(
+    [
+        'order',
+        'Add Order',
+        'class' => 'btn btn-primary'
+    ]
+    
+);
+
+echo '<br><br>';
+
+echo $this->tag->linkTo(
+    [
+        'order/displayOrders',
+        'Display Orders',
+        'class' => 'btn btn-info'
+    ]
+    
+);
+
+echo '<br><br>';
+
+echo $this->tag->linkTo(
+    [
+        'setting',
+        'Settings',
+        'class' => 'btn btn-secondary'
+    ]
+    
+);
+
+echo '<br><br>';
+

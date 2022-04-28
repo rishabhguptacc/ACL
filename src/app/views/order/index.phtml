@@ -1,0 +1,47 @@
+<h2>Order add</h2>
+
+<?php echo $this->tag->form("order/addOrder"); ?>  <!-- OR just use "product/add" -->
+
+    <p>
+        <label for="customer_name">Customer's Name</label>
+        <?php echo $this->tag->textField("customer_name"); ?>
+    </p>
+
+    <p>
+        <label for="customer_address">Customer's Address</label>
+        <?php echo $this->tag->textArea(["customer_address", 'cols' => 40, 'rows' => 3]); ?>
+    </p>
+
+    <p>
+        <label for="zipcode">Zipcode</label>
+        <?php echo $this->tag->textField("zipcode"); ?>
+    </p>
+
+    <p>
+        <label for="product">Product</label>
+        <?php
+            echo $this->tag->select(
+                [
+                    'product',
+                    $productList,
+                    'using'      => [
+                        'product_name', 
+                        'product_name',
+                    ],
+                    'useEmpty'   => false,
+                    'class' =>  "btn btn-outline-secondary btn-lg dropdown-toggle"
+                ]
+            );
+        ?>
+    </p>
+
+    <p>
+        <label for="quantity">Quantity</label>
+        <?php echo $this->tag->textField("quantity"); ?>
+    </p>
+
+    <p>
+        <?php echo $this->tag->submitButton("Add Order"); ?>
+    </p>
+
+</form>

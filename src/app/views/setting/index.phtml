@@ -1,0 +1,41 @@
+<h2>Order add</h2>
+
+<?php echo $this->tag->form("setting/setSetting"); ?>  <!-- OR just use "product/add" -->
+    <p>
+        <label for="title_optimization">Title Optimization</label>
+        <?php
+            echo $this->tag->select(
+                [
+                    'title_optimization',
+                    $settingList,
+                    'using'      => [
+                        '$settingList', 
+                        '$settingList',
+                    ],
+                    'useEmpty'   => false,
+                    'class' =>  "btn btn-outline-secondary btn-lg dropdown-toggle"
+                ]
+            );
+        ?>
+    </p>
+
+    <p>
+        <label for="default_price">Default Price</label>
+        <?php echo $this->tag->textField("default_price"); ?>
+    </p>
+
+    <p>
+        <label for="default_stock">Default Stock</label>
+        <?php echo $this->tag->textField(["default_stock"]); ?>
+    </p>
+
+    <p>
+        <label for="default_zipcode">Default Zipcode</label>
+        <?php echo $this->tag->textField("default_zipcode"); ?>
+    </p>
+
+    <p>
+        <?php echo $this->tag->submitButton("Save"); ?>
+    </p>
+
+</form>
