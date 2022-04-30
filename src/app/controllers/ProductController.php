@@ -11,7 +11,7 @@ class ProductController extends Controller
 
     public function addProductAction()
     {
-        $product = new Products;
+        $product = new Products();
 
         // $productData = $_POST;
         $productData = $this->request->getPost();

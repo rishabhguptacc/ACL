@@ -11,11 +11,16 @@ use Phalcon\Config;
 use Phalcon\Events\Event;
 use Phalcon\Events\Manager as EventsManager;
 
+
+require '../vendor/autoload.php';
+
 $config = new Config([]);
 
 // Define some absolute path constants to aid in locating resources
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
+define('BASE_URL', 'http://localhost:8080/');
+
 
 // Register an autoloader
 $loader = new Loader();
@@ -76,6 +81,15 @@ $container->set(
 );
 
 
+
+$container->set(
+    'mongo',
+    function () {
+        $mongo = new \MongoDB\Client('mongodb://mongo', array('username' => 'root', "password" => 'password123'));
+        return $mongo->ACL;
+    }
+);
+
 // Event Managements ---------------------------------- START ------------------------------------
 
 $eventsManager = new EventsManager();
@@ -88,24 +102,21 @@ $eventsManager->attach(
     // }
 );
 
+$eventsManager->attach(
+    'application:beforeHandleRequest',
+    new App\Listeners\notificationsListeners()
+);
+
 $container->set(
     'eventsManager',
     $eventsManager
 );
+$application->setEventsManager($eventsManager);
+// $application = new Application($container);
 
 
 // Event Managements ---------------------------------- STOP ------------------------------------
 
-
-// $container->set(
-//     'mongo',
-//     function () {
-//         $mongo = new MongoClient();
-
-//         return $mongo->selectDB('phalt');
-//     },
-//     true
-// );
 
 try {
     // Handle the request
